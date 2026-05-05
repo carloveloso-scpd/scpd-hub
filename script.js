@@ -8,19 +8,21 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// 2. Confetti Effect
+// 2. Confetti Effect (Triggered by 'onclick' in HTML)
 function celebrate() {
     confetti({
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#1e3a8a', '#ffd700', '#ffffff'] 
+        colors: ['#1e3a8a', '#ffd700', '#ffffff'] // SCPD Navy and Gold
     });
 }
 
-// 3. Admin Task Manager
+// 3. Admin Task Manager (Local Storage enabled)
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
+
+// This loads your saved tasks from your computer's memory
 let tasks = JSON.parse(localStorage.getItem('scpd_admin_tasks')) || [];
 
 function renderTasks() {
@@ -28,7 +30,10 @@ function renderTasks() {
     tasks.forEach((task, index) => {
         const li = document.createElement('li');
         li.className = 'task-item';
-        li.innerHTML = `<span><strong>Task:</strong> ${task}</span><button class="delete-btn" onclick="deleteTask(${index})">Done</button>`;
+        li.innerHTML = `
+            <span><strong>Task:</strong> ${task}</span>
+            <button class="delete-btn" onclick="deleteTask(${index})">Done</button>
+        `;
         taskList.appendChild(li);
     });
     localStorage.setItem('scpd_admin_tasks', JSON.stringify(tasks));
@@ -36,7 +41,11 @@ function renderTasks() {
 
 function addTask() {
     const val = taskInput.value.trim();
-    if (val) { tasks.push(val); taskInput.value = ''; renderTasks(); }
+    if (val) {
+        tasks.push(val);
+        taskInput.value = '';
+        renderTasks();
+    }
 }
 
 function deleteTask(index) {
@@ -44,5 +53,10 @@ function deleteTask(index) {
     renderTasks();
 }
 
-taskInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') addTask(); });
+// Allow pressing "Enter" to add a task
+taskInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') addTask();
+});
+
+// Initial Render
 renderTasks();
