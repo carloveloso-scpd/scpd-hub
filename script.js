@@ -1,48 +1,43 @@
-// 1. Live Clock Function
+// 1. Live Clock
 function updateClock() {
-    const now = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
     const clockElement = document.getElementById('live-clock');
-    if (clockElement) clockElement.textContent = now.toLocaleDateString('en-US', options);
+    const now = new Date();
+    clockElement.textContent = now.toLocaleString('en-PH', { 
+        weekday: 'long', year: 'numeric', month: 'long', 
+        day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' 
+    });
 }
 setInterval(updateClock, 1000);
 updateClock();
 
-// 2. Confetti Effect (Triggered by 'onclick' in HTML)
+// 2. Confetti Celebration
 function celebrate() {
     confetti({
-        particleCount: 100,
+        particleCount: 150,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#1e3a8a', '#ffd700', '#ffffff'] // SCPD Navy and Gold
+        colors: ['#1e3a8a', '#fbbf24', '#ffffff']
     });
 }
 
-// 3. Admin Task Manager (Local Storage enabled)
+// 3. Task Manager Logic
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
-
-// This loads your saved tasks from your computer's memory
-let tasks = JSON.parse(localStorage.getItem('scpd_admin_tasks')) || [];
+let tasks = JSON.parse(localStorage.getItem('scpd_tasks')) || [];
 
 function renderTasks() {
     taskList.innerHTML = '';
     tasks.forEach((task, index) => {
         const li = document.createElement('li');
-        li.className = 'task-item';
-        li.innerHTML = `
-            <span><strong>Task:</strong> ${task}</span>
-            <button class="delete-btn" onclick="deleteTask(${index})">Done</button>
-        `;
+        li.innerHTML = `<span>${task}</span><button class="done-btn" onclick="deleteTask(${index})">Done</button>`;
         taskList.appendChild(li);
     });
-    localStorage.setItem('scpd_admin_tasks', JSON.stringify(tasks));
+    localStorage.setItem('scpd_tasks', JSON.stringify(tasks));
 }
 
 function addTask() {
-    const val = taskInput.value.trim();
-    if (val) {
-        tasks.push(val);
+    if (taskInput.value.trim()) {
+        tasks.push(taskInput.value.trim());
         taskInput.value = '';
         renderTasks();
     }
@@ -53,10 +48,4 @@ function deleteTask(index) {
     renderTasks();
 }
 
-// Allow pressing "Enter" to add a task
-taskInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') addTask();
-});
-
-// Initial Render
 renderTasks();
