@@ -3,86 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Reboot 2026</title>
+    <title>My Links</title>
     
     <style>
         :root {
-            --primary: #6366f1;
             --bg: #0f172a;
             --card: #1e293b;
             --text: #f8fafc;
+            --accent: #6366f1;
+            --button-hover: #4f46e5;
         }
 
         body {
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: flex-start;
             min-height: 100vh;
             margin: 0;
+            padding: 40px 20px;
         }
 
         .container {
-            background: var(--card);
-            padding: 2.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
             text-align: center;
-            max-width: 400px;
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        h1 { margin-top: 0; color: var(--primary); }
-
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
+        .profile-img {
+            width: 96px;
+            height: 96px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        button:hover {
-            background-color: #4f46e5;
-            transform: translateY(-2px);
+        h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        p { opacity: 0.8; margin-bottom: 2rem; }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        #output {
-            margin-top: 1.5rem;
+        .link-card {
+            background: var(--card);
+            color: var(--text);
+            text-decoration: none;
+            padding: 1rem;
+            border-radius: 0.75rem;
             font-weight: 500;
-            min-height: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.2s ease;
+            display: block;
+        }
+
+        .link-card:hover {
+            transform: translateY(-3px);
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Footer Magic */
+        #status {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #10b981;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Fresh Start</h1>
-        <p>This is a clean, modern setup. Everything is in one file so GitHub can't "lose" your styles.</p>
-        
-        <button id="actionBtn">Initialize Project</button>
-        
-        <div id="output"></div>
+        <div class="profile-img">👤</div>
+        <h1>My Important Links</h1>
+        <p>Everything you need in one place.</p>
+
+        <div class="links-list">
+            <a href="https://github.com" class="link-card" target="_blank">My GitHub Profile</a>
+            <a href="https://google.com" class="link-card" target="_blank">Search Something</a>
+            <a href="https://twitter.com" class="link-card" target="_blank">Follow Me on X</a>
+            <a href="mailto:your-email@example.com" class="link-card">Contact Me</a>
+            </div>
+
+        <div id="status">● System Fully Loaded</div>
     </div>
 
     <script>
-        const button = document.getElementById('actionBtn');
-        const output = document.getElementById('output');
-
-        button.addEventListener('click', () => {
-            const now = new Date().toLocaleTimeString();
-            output.innerText = `✅ System Online at ${now}`;
-            button.innerText = "Working!";
-            
-            // Subtle animation
-            output.style.color = "#10b981"; 
-        });
+        console.log("Link Page Initialized");
+        // We can add a little click effect if you want later!
     </script>
 </body>
 </html>
