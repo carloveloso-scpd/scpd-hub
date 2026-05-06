@@ -1,59 +1,86 @@
-/* Keep your existing styles and add these for the Task Manager */
-.admin-tasks { margin-bottom: 40px; }
+:root {
+    --primary: #0f172a;
+    --accent: #fbbf24; /* Gold */
+    --blue: #2563eb;
+    --glass: rgba(255, 255, 255, 0.8);
+}
 
-.task-box {
-    background: white;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #f1f5f9;
+    color: var(--primary);
+    line-height: 1.6;
+}
+
+/* DepEd Corner Badge */
+.deped-badge {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: var(--accent);
+    padding: 10px 25px;
+    border-bottom-left-radius: 20px;
+    box-shadow: -2px 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    text-align: center;
+}
+.deped-badge p { font-size: 0.6rem; font-weight: bold; margin: 0; }
+.deped-badge a { text-decoration: none; color: #1e3a8a; font-weight: bold; font-size: 0.85rem; }
+
+/* Header */
+.hero-header {
+    background: var(--primary);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+.header-main h1 { font-size: 2.2rem; margin-bottom: 5px; }
+.subtitle { color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
+#clock-container { margin-top: 15px; font-family: monospace; font-size: 1.1rem; }
+
+/* Dashboard Content */
+.main-wrapper { max-width: 1100px; margin: -40px auto 40px; padding: 0 20px; }
+
+.hub-title { margin: 30px 0 15px; font-size: 1.4rem; color: var(--primary); border-left: 5px solid var(--blue); padding-left: 15px; }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
     padding: 25px;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    border: 1px solid white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
 }
+.glass-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--blue); }
+.card-icon { font-size: 2rem; margin-bottom: 10px; }
+.highlight-card { border-left: 5px solid #10b981; }
 
-.task-input-group {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
+/* Task Section */
+.task-container { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.task-input { display: flex; gap: 10px; margin-bottom: 20px; }
+.task-input input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; }
+.task-input button { padding: 0 20px; background: var(--blue); color: white; border: none; border-radius: 8px; cursor: pointer; }
+
+#taskList li { 
+    list-style: none; padding: 10px; border-bottom: 1px solid #eee; 
+    display: flex; justify-content: space-between; align-items: center;
 }
+.done-btn { background: #fee2e2; color: #ef4444; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.7rem; }
 
-#taskInput {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-.task-input-group button {
-    padding: 10px 25px;
-    background: #1e3a8a;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.task-input-group button:hover { background: #3b82f6; }
-
-#taskList { list-style: none; }
-
-.task-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px;
-    border-bottom: 1px solid #f1f5f9;
-    align-items: center;
-    background: #fff;
-    margin-bottom: 5px;
-    border-radius: 5px;
-}
-
-.delete-btn {
-    background: #fee2e2;
-    color: #ef4444;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
+/* Personnel Section */
+.personnel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+.person-card { background: white; padding: 15px; border-radius: 10px; border-left: 4px solid var(--accent); }
+.person-card span { color: #64748b; font-size: 0.85rem; }
+.person-card small { color: var(--blue); font-family: monospace; }
