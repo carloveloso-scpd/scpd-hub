@@ -3,103 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Links</title>
-    
-    <style>
-        :root {
-            --bg: #0f172a;
-            --card: #1e293b;
-            --text: #f8fafc;
-            --accent: #6366f1;
-            --button-hover: #4f46e5;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            margin: 0;
-            padding: 40px 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 96px;
-            height: 96px;
-            background: var(--accent);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        p { opacity: 0.8; margin-bottom: 2rem; }
-
-        .links-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .link-card {
-            background: var(--card);
-            color: var(--text);
-            text-decoration: none;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.2s ease;
-            display: block;
-        }
-
-        .link-card:hover {
-            transform: translateY(-3px);
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-
-        /* Footer Magic */
-        #status {
-            margin-top: 2rem;
-            font-size: 0.8rem;
-            color: #10b981;
-        }
-    </style>
+    <title>SCPD | Tracking & Admin Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Special Curricular Programs Division</h1>
+            <p class="tagline">Admin Stuffs & Centralized Tracking Portal</p>
+            <p id="live-clock" style="font-size: 0.9rem; margin-top: 10px; color: #ffd700; font-family: monospace;"></p>
+        </div>
+        <div class="deped-corner">
+            <p>Official Site</p>
+            <a href="https://www.deped.gov.ph" target="_blank">DepEd Philippines</a>
+        </div>
+    </header>
+
     <div class="container">
-        <div class="profile-img">👤</div>
-        <h1>My Important Links</h1>
-        <p>Everything you need in one place.</p>
+        
+        <section class="dashboard-section">
+            <h2 class="section-title">2026 Tracking Databases</h2>
+            <div class="grid-container">
+                
+                <a href="https://depedph-my.sharepoint.com/:x:/r/personal/bcd_od_deped_gov_ph/_layouts/15/Doc.aspx?sourcedoc=%7BF96ED7EF-1621-4935-A163-BFA08BE7D9C5%7D&file=2026%20BCD%20Tracking%20Database.xlsx&fromShare=true&action=default&mobileredirect=true" target="_blank" class="track-card" onclick="celebrate()">
+                    <div class="icon">📊</div>
+                    <h3>BCD Tracking Database</h3>
+                    <p>2026 Bureau of Curriculum Development</p>
+                </a>
 
-        <div class="links-list">
-            <a href="https://github.com" class="link-card" target="_blank">My GitHub Profile</a>
-            <a href="https://google.com" class="link-card" target="_blank">Search Something</a>
-            <a href="https://twitter.com" class="link-card" target="_blank">Follow Me on X</a>
-            <a href="mailto:your-email@example.com" class="link-card">Contact Me</a>
+                <a href="https://docs.google.com/spreadsheets/d/1vAVL107HlHFZnWqYG3Fki7cRvhxzmt2jTc8lAF-tono/edit?gid=0#gid=0" target="_blank" class="track-card" onclick="celebrate()">
+                    <div class="icon">📝</div>
+                    <h3>SCPD Google Sheet</h3>
+                    <p>Core Tracking Database</p>
+                </a>
+
+                <a href="https://planner.cloud.microsoft/webui/plan/7PPmgl4pLkqVklpTJ1nlnMgAE0dQ/view/board?tid=40e3ab80-2024-45a3-bf76-7a0761a24d29" target="_blank" class="track-card" onclick="celebrate()">
+                    <div class="icon">📂</div>
+                    <h3>Document Tracking Hub</h3>
+                    <p>Planner & Document Workflow</p>
+                </a>
+
+                <a href="https://docs.google.com/spreadsheets/d/1m-NrTsGSJarjQlOyTPv0_TbeRX5sOTciuBEYgjNU7R8/edit?gid=699651425#gid=699651425" target="_blank" class="track-card" onclick="celebrate()">
+                    <div class="icon">📅</div>
+                    <h3>SCPD Calendar</h3>
+                    <p>Schedules & Program Timeline</p>
+                </a>
+
+                <a href="https://depedph-my.sharepoint.com/my?id=%2Fpersonal%2Fcarlo%5Fveloso%5Fdeped%5Fgov%5Fph%2FDocuments%2F2026%20SCPD%20FILING&viewid=b2dda901%2Da52c%2D481f%2Db05d%2D75f1b13a7815" target="_blank" class="track-card highlight" onclick="celebrate()">
+                    <div class="icon">☁️</div>
+                    <h3>SCPD Online Filing</h3>
+                    <p>Cloud Storage & Archive</p>
+                </a>
+
             </div>
+        </section>
 
-        <div id="status">● System Fully Loaded</div>
+        <section class="admin-tasks">
+            <h2 class="section-title">Administrative Action Center</h2>
+            <div class="task-box">
+                <div class="task-input-group">
+                    <input type="text" id="taskInput" placeholder="Add a new administrative task...">
+                    <button onclick="addTask()">Add Task</button>
+                </div>
+                <ul id="taskList"></ul>
+            </div>
+        </section>
+
+        <section class="staff-section">
+            <h2 class="section-title">Division Personnel</h2>
+            <div class="staff-list">
+                <div class="staff-item"><strong>Miko Adrianne Puno</strong><span>Technical Assistant II</span><small>miko.puno@deped.gov.ph</small></div>
+                <div class="staff-item"><strong>Michael De Vera</strong><span>Administrative Support II</span><small>michael.devera007@deped.gov.ph</small></div>
+                <div class="staff-item"><strong>Danica Shan Torrecampo</strong><span>Administrative Support I</span><small>danicashan.torrecampo@deped.gov.ph</small></div>
+                <div class="staff-item"><strong>Rovic Sam Corpuz</strong><span>Administrative Support I</span><small>rovic.corpuz@deped.gov.ph</small></div>
+                <div class="staff-item"><strong>Carlo Angelo Veloso</strong><span>Administrative Assistant II</span><small>carlo.veloso@deped.gov.ph</small></div>
+            </div>
+        </section>
     </div>
 
-    <script>
-        console.log("Link Page Initialized");
-        // We can add a little click effect if you want later!
-    </script>
+    <footer>
+        <p>Special Curricular Programs Division &copy; 2026 | Internal Portal</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
