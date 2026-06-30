@@ -25,6 +25,17 @@
     </header>
 
     <div class="main-wrapper">
+        
+        <section class="hub-section">
+            <div class="search-container" style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; margin-bottom: 25px;">
+                <div class="search-box" style="display: flex; gap: 10px;">
+                    <input type="text" id="searchInput" placeholder="Search Google or ask Gemini AI..." style="flex: 1; padding: 14px 18px; border: 1px solid #cbd5e1; border-radius: 12px; font-size: 1rem;">
+                    <button id="googleSearchBtn" onclick="executeSearch('google')" style="padding: 0 22px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.95rem; background: #cbd5e1; color: #334155;">🔍 Google</button>
+                    <button id="geminiSearchBtn" onclick="executeSearch('gemini')" style="padding: 0 22px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.95rem; background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%); color: white;">✨ Gemini</button>
+                </div>
+            </div>
+        </section>
+
         <section class="hub-section">
             <h2 class="hub-title">2026 Tracking Databases</h2>
             <div class="dashboard-grid">
@@ -89,8 +100,130 @@
                 <div class="person-card"><strong>Carlo Angelo Veloso</strong><br><span>Administrative Assistant II</span><br><small>carlo.veloso@deped.gov.ph</small></div>
             </div>
         </section>
+
+        <section class="hub-section">
+            <h2 class="hub-title">Division Calendar</h2>
+            <div class="calendar-container" style="background: white; padding: 15px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;">
+                <iframe src="https://calendar.google.com/calendar/embed?src=en.philippines%23holiday%40group.v.calendar.google.com&ctz=Asia%2FManila" style="border: 0; border-radius: 12px;" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </section>
+
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // 1. Live Clock & Dynamic Greeting
+        function updateClock() {
+            const clockElement = document.getElementById('live-clock');
+            const subtitleElement = document.querySelector('.subtitle');
+            const now = new Date();
+            
+            if (clockElement) {
+                clockElement.textContent = now.toLocaleString('en-PH', { 
+                    weekday: 'long', year: 'numeric', month: 'long', 
+                    day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' 
+                });
+            }
+
+            const hours = now.getHours();
+            let greeting = "Admin Stuffs | Internal Portal";
+            if (hours < 12) greeting = "🌅 Good Morning! | Internal Portal";
+            else if (hours < 18) greeting = "☀️ Good Afternoon! | Internal Portal";
+            else greeting = "🌙 Good Evening! | Internal Portal";
+            
+            if (subtitleElement && subtitleElement.textContent !== greeting) {
+                subtitleElement.textContent = greeting;
+            }
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 2. Search Engine Mechanics
+        function executeSearch(engine) {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+            
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            if (engine === 'google') {
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+            } else if (engine === 'gemini') {
+                window.open(`https://gemini.google.com/app?q=${encodeURIComponent(query)}`, '_blank');
+            }
+        }
+
+        // 3. Confetti Engine Animations
+        function celebrate() {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#1e3a8a', '#fbbf24', '#ffffff']
+            });
+        }
+
+        function celebrateTaskDone() {
+            confetti({
+                particleCount: 50,
+                spread: 45,
+                origin: { y: 0.8 },
+                colors: ['#10b981', '#fbbf24']
+            });
+        }
+
+        // 4. Task Board Tracker Mechanics
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+        let tasks = JSON.parse(localStorage.getItem('scpd_tasks')) || [];
+
+        function renderTasks() {
+            if (!taskList) return;
+            taskList.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${task}</span><button class="done-btn" onclick="deleteTask(${index})">Done</button>`;
+                taskList.appendChild(li);
+            });
+            localStorage.setItem('scpd_tasks', JSON.stringify(tasks));
+        }
+
+        function addTask() {
+            if (taskInput && taskInput.value.trim()) {
+                tasks.push(taskInput.value.trim());
+                taskInput.value = '';
+                renderTasks();
+            }
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            renderTasks();
+            celebrateTaskDone();
+        }
+
+        // 5. Input Listeners for Enter key execution
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        executeSearch('gemini'); 
+                    }
+                });
+            }
+
+            if (taskInput) {
+                taskInput.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        addTask();
+                    }
+                });
+            }
+        });
+
+        renderTasks();
+    </script>
 </body>
 </html>
