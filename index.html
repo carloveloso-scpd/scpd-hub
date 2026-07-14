@@ -11,8 +11,8 @@
         /* Floating Office Supplies Styles */
         .background-animations {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; /* Ensures it starts at the very top */
+            left: 0; /* Ensures it starts at the very left */
             width: 100%;
             height: 100%;
             overflow: hidden;
@@ -69,7 +69,8 @@
         }
 
         /* Assigning animations & coordinates to individual items */
-        .supply-1 { top: 15%; left: 8%; animation: float-slow-drift 12s ease-in-out infinite; font-size: 2.5rem; }
+        /* Adjusted coordinates to reduce crowding */
+        .supply-1 { top: 18%; left: 8%; animation: float-slow-drift 12s ease-in-out infinite; font-size: 2.5rem; }
         .supply-2 { top: 40%; left: 5%; animation: float-wavy 14s ease-in-out infinite; font-size: 1.8rem; }
         .supply-3 { top: 75%; left: 10%; animation: float-diagonal 16s ease-in-out infinite; font-size: 2.2rem; }
         
@@ -152,172 +153,4 @@
                     <p>Daily Time Record Tracking</p>
                 </a>
 
-                <a href="https://planner.cloud.microsoft/webui/plan/7PPmgl4pLkqVklpTJ1nlnMgAE0dQ/view/board?tid=40e3ab80-2024-45a3-bf76-7a0761a24d29" target="_blank" class="glass-card" onclick="celebrate()">
-                    <div class="card-icon">📂</div>
-                    <h3>Document Tracking</h3>
-                    <p>Planner & Document Workflow Hub</p>
-                </a>
-
-                <a href="https://docs.google.com/spreadsheets/d/1m-NrTsGSJarjQlOyTPv0_TbeRX5sOTciuBEYgjNU7R8/edit?gid=699651425#gid=699651425" target="_blank" class="glass-card" onclick="celebrate()">
-                    <div class="card-icon">📅</div>
-                    <h3>SCPD Calendar</h3>
-                    <p>Schedules & Deadlines</p>
-                </a>
-
-                <a href="https://depedph-my.sharepoint.com/my?id=%2Fpersonal%2Fcarlo%5Fveloso%5Fdeped%5Fgov%5Fph%2FDocuments%2F2026%20SCPD%20FILING&viewid=b2dda901%2Da52c%2D481f%2Db05d%2D75f1b13a7815" target="_blank" class="glass-card highlight-card" onclick="celebrate()">
-                    <div class="card-icon">☁️</div>
-                    <h3>SCPD Online Filing</h3>
-                    <p>Cloud Storage & Digital Archives</p>
-                </a>
-
-            </div>
-        </section>
-
-        <section class="hub-section">
-            <h2 class="hub-title">Administrative Tasks</h2>
-            <div class="task-container">
-                <div class="task-input">
-                    <input type="text" id="taskInput" placeholder="Enter new admin task...">
-                    <button onclick="addTask()">Add</button>
-                </div>
-                <ul id="taskList"></ul>
-            </div>
-        </section>
-
-        <section class="hub-section">
-            <h2 class="hub-title">Division Personnel</h2>
-            <div class="personnel-grid">
-                <div class="person-card"><strong>Miko Adrianne Puno</strong><br><span>Technical Assistant II</span><br><small>miko.puno@deped.gov.ph</small></div>
-                <div class="person-card"><strong>Michael De Vera</strong><br><span>Administrative Support II</span><br><small>michael.devera007@deped.gov.ph</small></div>
-                <div class="person-card"><strong>Danica Shan Torrecampo</strong><br><span>Administrative Support I</span><br><small>danicashan.torrecampo@deped.gov.ph</small></div>
-                <div class="person-card"><strong>Rovic Sam Corpuz</strong><br><span>Administrative Support I</span><br><small>rovic.corpuz@deped.gov.ph</small></div>
-                <div class="person-card"><strong>Carlo Angelo Veloso</strong><br><span>Administrative Assistant II</span><br><small>carlo.veloso@deped.gov.ph</small></div>
-            </div>
-        </section>
-
-        <section class="hub-section">
-            <h2 class="hub-title">Division Calendar</h2>
-            <div class="calendar-container" style="background: white; padding: 15px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;">
-                <iframe src="https://calendar.google.com/calendar/embed?src=en.philippines%23holiday%40group.v.calendar.google.com&ctz=Asia%2FManila" style="border: 0; border-radius: 12px;" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-            </div>
-        </section>
-
-    </div>
-
-    <script>
-        // 1. Live Clock & Dynamic Greeting
-        function updateClock() {
-            const clockElement = document.getElementById('live-clock');
-            const subtitleElement = document.querySelector('.subtitle');
-            const now = new Date();
-            
-            if (clockElement) {
-                clockElement.textContent = now.toLocaleString('en-PH', { 
-                    weekday: 'long', year: 'numeric', month: 'long', 
-                    day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' 
-                });
-            }
-
-            const hours = now.getHours();
-            let greeting = "Admin Stuffs | Internal Portal";
-            if (hours < 12) greeting = "🌅 Good Morning! | Internal Portal";
-            else if (hours < 18) greeting = "☀️ Good Afternoon! | Internal Portal";
-            else greeting = "🌙 Good Evening! | Internal Portal";
-            
-            if (subtitleElement && subtitleElement.textContent !== greeting) {
-                subtitleElement.textContent = greeting;
-            }
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // 2. Search Engine Mechanics
-        function executeSearch(engine) {
-            const searchInput = document.getElementById('searchInput');
-            if (!searchInput) return;
-            
-            const query = searchInput.value.trim();
-            if (!query) return;
-
-            if (engine === 'google') {
-                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
-            } else if (engine === 'gemini') {
-                window.open(`https://gemini.google.com/app?q=${encodeURIComponent(query)}`, '_blank');
-            }
-        }
-
-        // 3. Confetti Engine Animations
-        function celebrate() {
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#1e3a8a', '#fbbf24', '#ffffff']
-            });
-        }
-
-        function celebrateTaskDone() {
-            confetti({
-                particleCount: 50,
-                spread: 45,
-                origin: { y: 0.8 },
-                colors: ['#10b981', '#fbbf24']
-            });
-        }
-
-        // 4. Task Board Tracker Mechanics
-        const taskInput = document.getElementById('taskInput');
-        const taskList = document.getElementById('taskList');
-        let tasks = JSON.parse(localStorage.getItem('scpd_tasks')) || [];
-
-        function renderTasks() {
-            if (!taskList) return;
-            taskList.innerHTML = '';
-            tasks.forEach((task, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `<span>${task}</span><button class="done-btn" onclick="deleteTask(${index})">Done</button>`;
-                taskList.appendChild(li);
-            });
-            localStorage.setItem('scpd_tasks', JSON.stringify(tasks));
-        }
-
-        function addTask() {
-            if (taskInput && taskInput.value.trim()) {
-                tasks.push(taskInput.value.trim());
-                taskInput.value = '';
-                renderTasks();
-            }
-        }
-
-        function deleteTask(index) {
-            tasks.splice(index, 1);
-            renderTasks();
-            celebrateTaskDone();
-        }
-
-        // 5. Input Listeners for Enter key execution
-        document.addEventListener("DOMContentLoaded", function() {
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        executeSearch('gemini'); 
-                    }
-                });
-            }
-
-            if (taskInput) {
-                taskInput.addEventListener('keypress', function(event) {
-                    if (event.key === 'Enter') {
-                        event.preventDefault();
-                        addTask();
-                    }
-                });
-            }
-        });
-
-        renderTasks();
-    </script>
-</body>
-</html>
+                <a href="
