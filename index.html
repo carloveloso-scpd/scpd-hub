@@ -82,26 +82,6 @@
         .supply-7 { top: 30%; left: 50%; animation: float-wavy 20s ease-in-out infinite; opacity: 0.08; font-size: 1.5rem; }
         .supply-8 { top: 60%; left: 30%; animation: float-slow-drift 17s ease-in-out infinite; opacity: 0.08; font-size: 1.8rem; }
         .supply-9 { top: 70%; right: 35%; animation: float-diagonal 19s ease-in-out infinite; opacity: 0.08; font-size: 2rem; }
-
-        /* Team Section Custom Styles */
-        .team-container {
-            background: white; 
-            padding: 24px; 
-            border-radius: 20px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            border: 1px solid #e2e8f0;
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .team-chart-img {
-            width: 100%;
-            max-width: 850px;
-            height: auto;
-            border-radius: 12px;
-            display: block;
-            margin: 0 auto;
-        }
     </style>
 </head>
 <body>
@@ -145,7 +125,6 @@
             </div>
         </section>
 
-        <!-- Databases Section -->
         <section class="hub-section">
             <h2 class="hub-title">2026 Tracking Databases</h2>
             <div class="dashboard-grid">
@@ -174,28 +153,172 @@
                     <p>Daily Time Record Tracking</p>
                 </a>
 
-                <!-- Completed your 5th card here -->
-                <a href="#" class="glass-card" onclick="celebrate()">
-                    <div class="card-icon">📇</div>
-                    <h3>SCPD Directory</h3>
-                    <p>Quick Reference Contacts</p>
+                <a href="https://planner.cloud.microsoft/webui/plan/7PPmgl4pLkqVklpTJ1nlnMgAE0dQ/view/board?tid=40e3ab80-2024-45a3-bf76-7a0761a24d29" target="_blank" class="glass-card" onclick="celebrate()">
+                    <div class="card-icon">📂</div>
+                    <h3>Document Tracking</h3>
+                    <p>Planner & Document Workflow Hub</p>
                 </a>
+
+                <a href="https://docs.google.com/spreadsheets/d/1m-NrTsGSJarjQlOyTPv0_TbeRX5sOTciuBEYgjNU7R8/edit?gid=699651425#gid=699651425" target="_blank" class="glass-card" onclick="celebrate()">
+                    <div class="card-icon">📅</div>
+                    <h3>SCPD Calendar</h3>
+                    <p>Schedules & Deadlines</p>
+                </a>
+
+                <a href="https://depedph-my.sharepoint.com/my?id=%2Fpersonal%2Fcarlo%5Fveloso%5Fdeped%5Fgov%5Fph%2FDocuments%2F2026%20SCPD%20FILING&viewid=b2dda901%2Da52c%2D481f%2Db05d%2D75f1b13a7815" target="_blank" class="glass-card highlight-card" onclick="celebrate()">
+                    <div class="card-icon">☁️</div>
+                    <h3>SCPD Online Filing</h3>
+                    <p>Cloud Storage & Digital Archives</p>
+                </a>
+
             </div>
         </section>
 
-        <!-- New Team Section (Added below the Databases) -->
-        <section class="hub-section" style="margin-top: 40px;">
-            <h2 class="hub-title">Meet the Staff</h2>
-            <div class="team-container">
-                <img 
-                    src="images/scpd_staff.png" 
-                    alt="SCPD Admin and Technical Staff - Mike, Carlo, Danica, Miko, and Rovic" 
-                    class="team-chart-img"
-                >
+        <section class="hub-section">
+            <h2 class="hub-title">Administrative Tasks</h2>
+            <div class="task-container">
+                <div class="task-input">
+                    <input type="text" id="taskInput" placeholder="Enter new admin task...">
+                    <button onclick="addTask()">Add</button>
+                </div>
+                <ul id="taskList"></ul>
             </div>
         </section>
 
-    </div> <!-- End main-wrapper -->
+        <section class="hub-section">
+            <h2 class="hub-title">Division Personnel</h2>
+            <div class="personnel-grid">
+                <div class="person-card"><strong>Miko Adrianne Puno</strong><br><span>Technical Assistant II</span><br><small>miko.puno@deped.gov.ph</small></div>
+                <div class="person-card"><strong>Michael De Vera</strong><br><span>Administrative Support II</span><br><small>michael.devera007@deped.gov.ph</small></div>
+                <div class="person-card"><strong>Danica Shan Torrecampo</strong><br><span>Administrative Support I</span><br><small>danicashan.torrecampo@deped.gov.ph</small></div>
+                <div class="person-card"><strong>Rovic Sam Corpuz</strong><br><span>Administrative Support I</span><br><small>rovic.corpuz@deped.gov.ph</small></div>
+                <div class="person-card"><strong>Carlo Angelo Veloso</strong><br><span>Administrative Assistant II</span><br><small>carlo.veloso@deped.gov.ph</small></div>
+            </div>
+        </section>
 
+        <section class="hub-section">
+            <h2 class="hub-title">Division Calendar</h2>
+            <div class="calendar-container" style="background: white; padding: 15px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;">
+                <iframe src="https://calendar.google.com/calendar/embed?src=en.philippines%23holiday%40group.v.calendar.google.com&ctz=Asia%2FManila" style="border: 0; border-radius: 12px;" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // 1. Live Clock & Dynamic Greeting
+        function updateClock() {
+            const clockElement = document.getElementById('live-clock');
+            const subtitleElement = document.querySelector('.subtitle');
+            const now = new Date();
+            
+            if (clockElement) {
+                clockElement.textContent = now.toLocaleString('en-PH', { 
+                    weekday: 'long', year: 'numeric', month: 'long', 
+                    day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' 
+                });
+            }
+
+            const hours = now.getHours();
+            let greeting = "Admin Stuffs | Internal Portal";
+            if (hours < 12) greeting = "🌅 Good Morning! | Internal Portal";
+            else if (hours < 18) greeting = "☀️ Good Afternoon! | Internal Portal";
+            else greeting = "🌙 Good Evening! | Internal Portal";
+            
+            if (subtitleElement && subtitleElement.textContent !== greeting) {
+                subtitleElement.textContent = greeting;
+            }
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 2. Search Engine Mechanics
+        function executeSearch(engine) {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+            
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            if (engine === 'google') {
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+            } else if (engine === 'gemini') {
+                window.open(`https://gemini.google.com/app?q=${encodeURIComponent(query)}`, '_blank');
+            }
+        }
+
+        // 3. Confetti Engine Animations
+        function celebrate() {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#1e3a8a', '#fbbf24', '#ffffff']
+            });
+        }
+
+        function celebrateTaskDone() {
+            confetti({
+                particleCount: 50,
+                spread: 45,
+                origin: { y: 0.8 },
+                colors: ['#10b981', '#fbbf24']
+            });
+        }
+
+        // 4. Task Board Tracker Mechanics
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+        let tasks = JSON.parse(localStorage.getItem('scpd_tasks')) || [];
+
+        function renderTasks() {
+            if (!taskList) return;
+            taskList.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${task}</span><button class="done-btn" onclick="deleteTask(${index})">Done</button>`;
+                taskList.appendChild(li);
+            });
+            localStorage.setItem('scpd_tasks', JSON.stringify(tasks));
+        }
+
+        function addTask() {
+            if (taskInput && taskInput.value.trim()) {
+                tasks.push(taskInput.value.trim());
+                taskInput.value = '';
+                renderTasks();
+            }
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            renderTasks();
+            celebrateTaskDone();
+        }
+
+        // 5. Input Listeners for Enter key execution
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        executeSearch('gemini'); 
+                    }
+                });
+            }
+
+            if (taskInput) {
+                taskInput.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        addTask();
+                    }
+                });
+            }
+        });
+
+        renderTasks();
+    </script>
 </body>
 </html>
