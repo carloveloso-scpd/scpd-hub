@@ -187,6 +187,12 @@
 
         <section class="hub-section">
             <h2 class="hub-title">Division Personnel</h2>
+            
+            <!-- Injected Staff Team Image Banner Portion -->
+            <div class="staff-image-container" style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; margin-bottom: 25px; text-align: center;">
+                <img src="scpd_staff.png" alt="SCPD Admin and Technical Staff Team" style="width: 100%; max-width: 850px; height: auto; border-radius: 12px; display: block; margin: 0 auto;">
+            </div>
+
             <div class="personnel-grid">
                 <div class="person-card"><strong>Miko Adrianne Puno</strong><br><span>Technical Assistant II</span><br><small>miko.puno@deped.gov.ph</small></div>
                 <div class="person-card"><strong>Michael De Vera</strong><br><span>Administrative Support II</span><br><small>michael.devera007@deped.gov.ph</small></div>
@@ -249,6 +255,7 @@
 
         // 3. Confetti Engine Animations
         function celebrate() {
+            const currentYear = new Date().getFullYear();
             confetti({
                 particleCount: 150,
                 spread: 70,
