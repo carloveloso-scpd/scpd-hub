@@ -82,6 +82,26 @@
         .supply-7 { top: 30%; left: 50%; animation: float-wavy 20s ease-in-out infinite; opacity: 0.08; font-size: 1.5rem; }
         .supply-8 { top: 60%; left: 30%; animation: float-slow-drift 17s ease-in-out infinite; opacity: 0.08; font-size: 1.8rem; }
         .supply-9 { top: 70%; right: 35%; animation: float-diagonal 19s ease-in-out infinite; opacity: 0.08; font-size: 2rem; }
+
+        /* Team Section Custom Styles */
+        .team-container {
+            background: white; 
+            padding: 24px; 
+            border-radius: 20px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .team-chart-img {
+            width: 100%;
+            max-width: 850px;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -125,6 +145,7 @@
             </div>
         </section>
 
+        <!-- Databases Section -->
         <section class="hub-section">
             <h2 class="hub-title">2026 Tracking Databases</h2>
             <div class="dashboard-grid">
@@ -153,4 +174,28 @@
                     <p>Daily Time Record Tracking</p>
                 </a>
 
-                <a href="
+                <!-- Completed your 5th card here -->
+                <a href="#" class="glass-card" onclick="celebrate()">
+                    <div class="card-icon">📇</div>
+                    <h3>SCPD Directory</h3>
+                    <p>Quick Reference Contacts</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- New Team Section (Added below the Databases) -->
+        <section class="hub-section" style="margin-top: 40px;">
+            <h2 class="hub-title">Meet the Staff</h2>
+            <div class="team-container">
+                <img 
+                    src="images/scpd_staff.png" 
+                    alt="SCPD Admin and Technical Staff - Mike, Carlo, Danica, Miko, and Rovic" 
+                    class="team-chart-img"
+                >
+            </div>
+        </section>
+
+    </div> <!-- End main-wrapper -->
+
+</body>
+</html>
